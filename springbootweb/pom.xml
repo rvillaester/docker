@@ -29,8 +29,12 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>io.fabric8</groupId>-->
+            <!--<artifactId>spring-cloud-kubernetes-core</artifactId>-->
+            <!--<version>0.1.6</version>-->
+        <!--</dependency>-->
     </dependencies>
-
 
     <build>
         <plugins>
@@ -46,7 +50,7 @@
                     <to>
                         <image>${docker.image.prefix}/spring-boot-app</image>
                         <tags>
-                            <tag>1.0</tag>
+                            <tag>1.1</tag>
                         </tags>
                     </to>
                     <from>
@@ -56,7 +60,8 @@
                         <ports>
                             <port>8080</port>
                         </ports>
-                        <mainClass>com.sb.Application</mainClass>
+                        <!--<mainClass>com.sb.Application</mainClass>-->
+                        <!--<entrypoint>java, -cp, /app/resources:/app/classes:/app/libs/*, com.sb.Application</entrypoint>-->
                     </container>
                 </configuration>
             </plugin>
