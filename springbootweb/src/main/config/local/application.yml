@@ -1,0 +1,11 @@
+spring:
+  profiles: local
+env:
+  name: local
+
+---
+spring:
+  profiles: prod
+user:
+  username: test
+  password: password

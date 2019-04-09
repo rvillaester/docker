@@ -1,0 +1,7 @@
+-- stop all containers in windows powershell
+docker ps -a -q | ForEach { docker stop $_ }
+docker ps -a -q | ForEach { docker rm -f $_ }
+
+-- change the restart policy in windows powershell
+docker ps -a -q | ForEach { docker update --restart=no $_ }
+docker ps -a -q | ForEach { docker update --restart=unless-stopped $_ }
