@@ -5,3 +5,12 @@ docker ps -a -q | ForEach { docker rm -f $_ }
 -- change the restart policy in windows powershell
 docker ps -a -q | ForEach { docker update --restart=no $_ }
 docker ps -a -q | ForEach { docker update --restart=unless-stopped $_ }
+
+-- docker command reference
+https://docs.docker.com/engine/reference/commandline/docker/
+
+-- maven jib plugin
+https://github.com/GoogleContainerTools/jib/tree/master/jib-maven-plugin
+
+-- list all images
+docker images

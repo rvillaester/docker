@@ -1,3 +1,4 @@
 user:
   username: test
-  password: password
+app:
+  version: 1.0
