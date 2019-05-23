@@ -19,6 +19,7 @@ public class RestService {
 
     @RequestMapping("/")
     public String home() {
+        System.out.println("Home page");
         String password = secretManager.getSecret(Secrets.USER_PASSWORD);
         return String.format("Version: %s, Username: %s, Password: %s", version, name, password);
     }
