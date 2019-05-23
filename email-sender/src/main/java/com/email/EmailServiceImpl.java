@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
@@ -43,18 +44,17 @@ public class EmailServiceImpl implements EmailService {
     private EmailResponse doRetryable(Supplier<EmailResponse> supplier){
         int attempt = 0;
         EmailResponse response = null;
-        while(attempt != maxAttempt){
+        while(attempt < maxAttempt){
             response = supplier.get();
-            if(!response.isSucceed()){
+            if(!Optional.ofNullable(response).orElseGet(EmailResponse::failedResponse).isSucceed()){
                 attempt++;
                 try {
                     TimeUnit.SECONDS.sleep(retryDelay);
                 } catch (InterruptedException e) {
                     System.out.println(e);
                 }
-            } else{
-                break;
-            }
+                System.out.println(String.format("Retrying #%s ......", attempt));
+            } else break;
         }
         return response;
     }

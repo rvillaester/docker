@@ -12,6 +12,10 @@ public class EmailResponse {
         this.message = message;
     }
 
+    public static EmailResponse failedResponse(){
+        return new EmailResponse(-1, "Fail");
+    }
+
     public String getMessage() {
         return message;
     }
