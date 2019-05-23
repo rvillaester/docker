@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -32,6 +33,8 @@ public class EmailServiceImpl implements EmailService {
          return doRetryable(
                     () -> {
                         EmailResponse response = null;
+                        // shuffle the providers so that will add randomness
+                        Collections.shuffle(providers);
                         for (EmailProvider provider : providers) {
                             response = provider.sendMail(request);
                             if(response.isSucceed()) break;
